@@ -12,7 +12,7 @@
       
         <div class="book-container">
 
-        <h2><?php echo $authorsList['name'];?></h2>
+        <h2><?php echo $authorsList['name_author'];?></h2>
         <div class="fullbook-description">
             <p class="idbook-description"><?php echo $authorsList['information'];?></p>
         </div>
@@ -22,20 +22,20 @@
             <div class="book">
                 <div class="book-img">
                     <a href="/bookbox/index.php/books/<?php echo $booksItem["id"]?>">
-                        <?php echo '<img src="\bookbox/img/'.$booksItem["image"].'" title="'.$booksItem["name"].'">' ;?>
+                        <?php echo '<img src="\bookbox/assets/img/'.$booksItem["image"].'" title="'.$booksItem["name_book"].'">' ;?>
                     </a>
                 </div>
                 <div class="book-info">
-                    <a href="/bookbox/index.php/author/<?php echo $booksItem["author_id"]?>" style="text-decoration: none; color: black;">    
+                    <a href="/bookbox/index.php/author/<?php echo $id;?>" style="text-decoration: none; color: black;">    
                         
                         <?php if($booksItem['author_id']==$authorsList['id']):?>
-                            <h3 class="book-author"><?php echo $authorsList['name'];?></h3>
+                            <h3 class="book-author"><?php echo $authorsList['name_author'];?></h3>
                         <?php endif;?>
 
                     </a>
 
-                    <a href="/bookbox/index.php/books/<?php echo $booksItem["id"]?>" style="text-decoration: none;">
-                        <h3 class="book-name"><?php echo $booksItem['name'];?></h3>
+                    <a href="/bookbox/index.php/books/<?php echo $booksItem["author_id"]?>" style="text-decoration: none;">
+                        <h3 class="book-name"><?php echo $booksItem['name_book'];?></h3>
                     </a>
 
                     <p class="book-price"><?php echo $booksItem['price'];?>$</p>

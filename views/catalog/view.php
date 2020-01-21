@@ -3,16 +3,26 @@
 <div class="rightside">
     <ul>
         <?php foreach($genresList as $genresItem):?>
-            <li><a href="/bookbox/index.php/catalog/<?php echo $genresItem['id'];?>"><?php echo $genresItem['name_genre'];?></a></li>
+            <li>
+
+                <?php if($genresItem['id'] == $catalog):?> 
+                    <a href="/bookbox/index.php/catalog/<?php echo $genresItem['id'];?>" style="font-weight: 600;">             
+                    &#xab;<?php echo $genresItem['name_genre'];?>&#xbb;
+                    </a>
+                    <?php else:?> 
+                    <a href="/bookbox/index.php/catalog/<?php echo $genresItem['id'];?>">             
+                        <?php echo $genresItem['name_genre'];?>
+                    </a>
+                <?php endif;?> 
+                
+            </li>
         <?php endforeach;?>
     </ul>
 </div>
 
     <div class="nav">
-        <h2>Книги современных отечественных и зарубежных писателей</h2>
-        <p>В этом разделе вы найдете: новинки современной художественной литературы со всего мира, нашумевшие бестселлеры, популярные книги известных отечественных и зарубежных писателей, экранизированные произведения.</p>
-        
-        <div class="book-container">
+    <h2>Книги по жанрам</h2>
+        <div class="book-container"> 
 
         <?php foreach($genresList as $genresItem):?>
             <?php if($genresItem['id'] == $catalog):?>  
@@ -23,29 +33,26 @@
         <?php if($catalogItems == null):?>  
             <h3>Книги данного жанра отсутствуют...</h3>
         <?php endif;?>  
-
         <?php foreach($catalogItems as $catalogItem):?>
             
             <div class="book">
                 <div class="book-img">
                     <a href="/bookbox/index.php/books/<?php echo $catalogItem["id"]?>">
-                        <?php echo '<img src="\bookbox/img/'.$catalogItem["image"].'" title="'.$catalogItem["name"].'">' ;?>
+                        <?php echo '<img src="\bookbox/assets/img/'.$catalogItem["image"].'" title="'.$catalogItem["name_book"].'">' ;?>
                     </a>
                 </div>
                 <div class="book-info">
 
                     <a href="/bookbox/index.php/author/<?php echo $catalogItem["author_id"]?>" style="text-decoration: none; color: black;">
                                                 
-                        <?php foreach($authorsList as $authorsItem):?>
-                            <?php if($catalogItem['author_id']==$authorsItem['id']):?>
-                                <h3 class="book-author"><?php echo $authorsItem['name'];?></h3>
-                            <?php endif;?>
-                        <?php endforeach;?>
+                        <h3 class="book-author"><?php echo $catalogItem['name_author'];?></h3>
 
                     </a>
 
                     <a href="/bookbox/index.php/books/<?php echo $catalogItem["id"]?>" style="text-decoration: none;">
-                        <h3 class="book-name"><?php echo $catalogItem['name'];?></h3>
+
+                        <h3 class="book-name"><?php echo $catalogItem['name_book'];?></h3>
+
                     </a>
 
                     <p class="book-price"><?php echo $catalogItem['price'];?>$</p>
@@ -60,6 +67,3 @@
     </div>
 
 <?php include ROOT . '/views/loyouts/footer.php';?>
-
-
-                

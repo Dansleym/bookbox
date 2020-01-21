@@ -11,33 +11,31 @@
 
         <div class="book-container">
 
-            
             <div class="book">
                 <div class="book-img">
-                    <a href="/bookbox/index.php/books/<?php echo $booksItem["id"]?>"><?php echo '<img src="\bookbox/img/'.$booksItem["image"].'" title="'.$booksItem["name"].'">' ;?>
-                </a></div>
+                    <a href="/bookbox/index.php/books/<?php echo $booksItem["id"]?>">
+                        <?php echo '<img src="\bookbox/assets/img/'.$booksItem["image"].'" title="'.$booksItem["name_book"].'">' ;?>
+                    </a>
+                </div>
                 <div class="book-info">
 
-                        <?php foreach($authorsList as $authorsItem):?>
-                            <?php if($id==$authorsItem['id']):?>
-                                <h3 class="book-author"><?php echo $authorsItem['name'];?></h3>
-                            <?php endif;?>
-                        <?php endforeach;?>
+                    <a href="/bookbox/index.php/author/<?php echo $booksItem["author_id"]?>" style="text-decoration: none; color: black;">
+                        <h3 class="book-author"><?php echo $booksItem['name_author'];?></h3>
+                    </a>
 
-
-                    <h3 class="book-name"><?php echo $booksItem['name'];?></h3>
-                  <span class="book-price"><?php echo $booksItem['price'];?>$</span>
-                  <br>
-                  <a href="#">buy now</a>
+                    <h3 class="book-name"><?php echo $booksItem['name_book'];?></h3>
+                    <p class="book-price"><?php echo $booksItem['price'];?>$</p>
+                    <br>
+                    <a href="/bookbox/index.php/buyform/<?php echo $booksItem["id"]?>" class="buy-button">buy now</a>
                   
                 </div>
             </div>
+
             <h2>Описание книги</h2>
             <div class="fullbook-description">
                 <p class="idbook-description"><?php echo $booksItem['description'];?></p>
             </div>
             
-
         </div>
     </div>
 

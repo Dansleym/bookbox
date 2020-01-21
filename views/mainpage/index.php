@@ -9,20 +9,19 @@
 </div>
 
     <div class="nav">
-        <h2>Книги современных отечественных и зарубежных писателей</h2>
-        <p>В этом разделе вы найдете: новинки современной художественной литературы со всего мира, нашумевшие бестселлеры, популярные книги известных отечественных и зарубежных писателей, экранизированные произведения.</p>
-        
+        <h2>Главная страница</h2>
+
         <div class="book-container">
     
         <?php foreach($booksList as $booksItem):?>
             
             <div class="book">
                 <div class="book-img">
-                    <a href="/bookbox/index.php/books/<?php echo $booksItem["id"]?>"><?php echo '<img src="\bookbox/img/'.$booksItem["image"].'" title="'.$booksItem["name"].'">' ;?>
+                    <a href="/bookbox/index.php/books/<?php echo $booksItem["id"]?>"><?php echo '<img src="\bookbox/assets/img/'.$booksItem["image"].'" title="'.$booksItem["name_book"].'">' ;?>
                 </a></div>
                 <div class="book-info">
-                    <h3 class="book-author"><?php echo $booksItem['author_id'];?></h3>
-                    <h3 class="book-name"><?php echo $booksItem['name'];?></h3>
+                    <h3 class="book-author"><?php echo $booksItem['name_author'];?></h3>
+                    <h3 class="book-name"><?php echo $booksItem['name_book'];?></h3>
                     <p class="book-description"><?php echo $booksItem['description'];?></p>
                   <span class="book-price"><?php echo $booksItem['price'];?>$</span>
                 </div>

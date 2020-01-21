@@ -1,8 +1,5 @@
 <?php
 
-include_once ROOT . '/models/Books.php';
-include_once ROOT . '/models/Genres.php';
-
 class BooksController{
 
     public function actionIndex(){
@@ -19,10 +16,9 @@ class BooksController{
     public function actionView($id){
         if($id){
             $booksItem = Books::getBooksItemById($id);
+
             $genresList = array();
             $genresList = Genres::getGenresList();
-
-            $authorsList = Books::getBookAuthorsList();
 
             require_once(ROOT.'/views/books/view.php');
         }
@@ -38,6 +34,7 @@ class BooksController{
             
             $genresList = array();
             $genresList = Genres::getGenresList();
+            
 
             require_once(ROOT.'/views/books/author.php');
         }

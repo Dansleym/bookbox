@@ -32,7 +32,8 @@ class Router{
                 //определение controller и action для обработки запроса
                 $controllerName = ucfirst(array_shift($segment)).'Controller';
                 $actionName = 'action'.ucfirst(array_shift($segment));
-
+echo  $controllerName;
+echo  $actionName;
                 $parameters = $segment;
 
                 //подключение файла класса-контроллера
