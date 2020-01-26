@@ -13,7 +13,7 @@
   <div class="App">
       <div class="header">
         <a href="/bookbox" style="color: white; font-size: 20px;">На главную</a>
-        <a href="/bookbox/index.php/admin/" style="color: white; font-size: 20px;margin-left: 100px;">Админ панель</a>
+        <a href="/bookbox/admin/" style="color: white; font-size: 20px;margin-left: 100px;">Админ панель</a>
       </div>
 
       

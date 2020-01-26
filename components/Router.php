@@ -6,6 +6,7 @@ class Router{
     public function __construct(){
         $routesPath = ROOT.'/config/routes.php';
         $this->routes = include($routesPath);
+        session_start();
     }
 
     private function getURI()
@@ -16,7 +17,26 @@ class Router{
         }
     }
 
+    public function isAdmin($isAdmin = 0){
+
+        $_SESSION['admin'] = $isAdmin;
+        if($_SESSION['admin']){
+            self::adminRun();
+        }
+        else{
+            self::run();
+        }
+    }
+
+    public function adminRun(){
+            $booksList = array();
+            $booksList = Books::getBooksList();
+
+            require_once(ROOT.'/views/admin/index.php');
+    }
+
     public function run(){
+
         $uri = $this->getURI();
 
         foreach($this->routes as $uriPattern =>$path){
@@ -32,8 +52,7 @@ class Router{
                 //определение controller и action для обработки запроса
                 $controllerName = ucfirst(array_shift($segment)).'Controller';
                 $actionName = 'action'.ucfirst(array_shift($segment));
-echo  $controllerName;
-echo  $actionName;
+
                 $parameters = $segment;
 
                 //подключение файла класса-контроллера

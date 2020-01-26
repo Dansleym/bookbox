@@ -11,7 +11,10 @@ class Catalog{
         if($id){
             $db = Db::getConnection();
 
-            $result = $db->query('SELECT books.id, books.name_book, books.description, books.price, books.image, books.author_id, authors.name_author FROM books INNER JOIN authors ON books.author_id=authors.id WHERE books.genre_id='. $id);
+            $result = $db->query('SELECT books.id, books.name_book, books.description, books.price, 
+                                 books.image, books.author_id, authors.name_author 
+                                 FROM books INNER JOIN authors ON books.author_id=authors.id 
+                                 WHERE books.genre_id='. $id);
               
             $catalogItems = array();
             $i = 0;

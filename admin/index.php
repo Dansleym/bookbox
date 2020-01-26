@@ -1,9 +1,11 @@
 <?php
 
-echo $_SERVER['PHP_AUTH_USER'];
+define('ROOT', dirname(__FILE__) . '/..');
 
+require_once(ROOT.'/components/Autoload.php');
 
-echo '<br><a href="/bookbox" style="color: black; font-size: 20px;">На главную</a>';
+(new Router)->isAdmin(1);
+
 
 
 

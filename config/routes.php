@@ -11,7 +11,8 @@ return array(
     'buyform/([0-9]+)' => 'mainpage/buyform/$1',
 
     'admin/([0-9]+)' => 'admin/view/$1',
-    'admin/book/([0-9]+)' => 'admin/book/$1',
+    'admin/updbook/([0-9]+)' => 'admin/updbook/$1',
+    'admin/addbook' => 'admin/addBook',
 
     'admin' => 'admin/index',
 

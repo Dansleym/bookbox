@@ -34,7 +34,7 @@
 
                     </a>
 
-                    <a href="/bookbox/index.php/books/<?php echo $booksItem["author_id"]?>" style="text-decoration: none;">
+                    <a href="/bookbox/index.php/books/<?php echo $booksItem["id"]?>" style="text-decoration: none;">
                         <h3 class="book-name"><?php echo $booksItem['name_book'];?></h3>
                     </a>
 

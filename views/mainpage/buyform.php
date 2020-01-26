@@ -89,7 +89,7 @@ form input{
 
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email"><br>
-                <input type="submit" name="submit" value="Отправить заказ" style="border: none;background: #C50023;border-radius: 3px;color: white;font-weight: bold;text-transform: uppercase;margin-top: 30px;">
+                <input type="submit" value="submit" name="submit" style="border: none;background: #C50023;border-radius: 3px;color: white;font-weight: bold;text-transform: uppercase;margin-top: 30px;">
             </form>
    </div>
 

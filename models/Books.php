@@ -7,7 +7,11 @@ class Books{
         if($id){
             $db = Db::getConnection();
 
-            $result = $db->query('SELECT books.id, books.name_book, books.description, books.price, books.image, authors.name_author, authors.information FROM books INNER JOIN authors ON books.author_id=authors.id WHERE books.id='. $id);
+            $result = $db->query('SELECT books.id, books.name_book, books.description, books.price, 
+                                 books.image, authors.name_author, authors.information 
+                                 FROM books 
+                                 INNER JOIN authors ON books.author_id=authors.id 
+                                 WHERE books.id='. $id);
               
             $catalogItems = array();
             $i = 0;
@@ -37,7 +41,10 @@ class Books{
         if($id){
             $db = Db::getConnection();
 
-            $result = $db->query('SELECT books.id, books.name_book, books.description, books.price, books.image, books.author_id, authors.name_author, authors.information FROM books INNER JOIN authors ON books.author_id=authors.id WHERE books.id='. $id);
+            $result = $db->query('SELECT books.id, books.name_book, books.description, books.price, books.genre_id,
+                                 books.image, books.author_id, authors.name_author, authors.information 
+                                 FROM books INNER JOIN authors ON books.author_id=authors.id 
+                                 WHERE books.id='. $id);
 
             $booksItem = $result->fetch();
     
@@ -73,7 +80,10 @@ class Books{
 
         $booksList = array();
 
-        $result = $db->query('SELECT books.id, books.name_book, books.description, books.price, books.image, authors.name_author FROM books INNER JOIN authors ON books.author_id=authors.id');
+        $result = $db->query('SELECT books.id, books.name_book, books.description, 
+                             books.price, books.image, authors.name_author 
+                             FROM books 
+                             INNER JOIN authors ON books.author_id=authors.id');
 
         $i = 0;
 
