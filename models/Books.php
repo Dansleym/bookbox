@@ -2,6 +2,35 @@
 
 class Books{
 
+    public static function getTotalBooksInCategory($id){
+        $id = intval($id);
+
+        if($id){
+            $db = Db::getConnection();
+
+            $result = $db->query('SELECT count(id) FROM books WHERE genre_id='. $id);
+
+            $result->setFetchMode(PDO::FETCH_ASSOC);
+            $row = $result->fetch();
+    
+            return $row['count(id)'];
+        }
+
+    }
+
+    public static function getTotalBooksCount(){
+
+        $db = Db::getConnection();
+
+        $result = $db->query('SELECT count(*) FROM books');
+        
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $row = $result->fetch();
+
+        return $row['count(*)'];
+
+    }
+
     public static function getBooksListByAuthor($id){
 
         if($id){
@@ -81,9 +110,14 @@ class Books{
         $booksList = array();
 
         $result = $db->query('SELECT books.id, books.name_book, books.description, 
-                             books.price, books.image, authors.name_author 
+                             books.price, books.image, books.author_id, authors.name_author 
                              FROM books 
                              INNER JOIN authors ON books.author_id=authors.id');
+
+            // select books.name_book, GROUP_CONCAT(genre.name_genre SEPARATOR ', ') as "genre_name"
+            // from books, genre
+            // where books.id = genre.id
+            // group by books.name_book;
 
         $i = 0;
 
@@ -93,6 +127,7 @@ class Books{
             $booksList[$i]['description'] = $row['description'];
             $booksList[$i]['price'] = $row['price'];
             $booksList[$i]['image'] = $row['image'];
+            $booksList[$i]['author_id'] = $row['author_id'];
             $booksList[$i]['name_author'] = $row['name_author'];
    
             $i++;
@@ -102,7 +137,7 @@ class Books{
     }
 
 
-    public static function getBookAuthorsList(){
+    public static function getAuthorsList(){
 
         $db = Db::getConnection();
 

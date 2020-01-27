@@ -2,19 +2,25 @@
 
 class Catalog{
 
+    const SHOW_BY_DEFAULT = 3;
     /**
      * Returns books list by genre id
      * @param integer $id
      */
-    public static function getCatalogItemById($id){
+    public static function getCatalogItemById($id, $page = 1){
 
-        if($id){
+
+            $offset = ($page - 1) * self::SHOW_BY_DEFAULT;
+
+
             $db = Db::getConnection();
 
             $result = $db->query('SELECT books.id, books.name_book, books.description, books.price, 
                                  books.image, books.author_id, authors.name_author 
                                  FROM books INNER JOIN authors ON books.author_id=authors.id 
-                                 WHERE books.genre_id='. $id);
+                                 WHERE books.genre_id='.$id.'
+                                 LIMIT ' . self::SHOW_BY_DEFAULT
+                                 .' OFFSET ' . $offset);
               
             $catalogItems = array();
             $i = 0;
@@ -31,7 +37,6 @@ class Catalog{
             }
     
             return $catalogItems;
-        }
     }
 }
 

@@ -14,15 +14,20 @@ class CatalogController{
         return true;
     }
 
-    public function actionView($catalog){
-        if($catalog){
-            $catalogItems = Catalog::getCatalogItemById($catalog);
+    public function actionView($catalog, $page = 1){
 
-            $genresList = array();
-            $genresList = Genres::getGenresList();
-            
-            require_once(ROOT.'/views/catalog/view.php');
-        }
+
+        $total = Books::getTotalBooksInCategory($catalog);
+
+        $pagination = new Pagination($total, $page, Catalog::SHOW_BY_DEFAULT, 'page-');
+
+        $catalogItems = Catalog::getCatalogItemById($catalog, $page);
+
+        $genresList = array();
+        $genresList = Genres::getGenresList();
+        
+        require_once(ROOT.'/views/catalog/view.php');
+
         return true;
     }
 

@@ -6,11 +6,11 @@
             <li>
 
                 <?php if($genresItem['id'] == $catalog):?> 
-                    <a href="/bookbox/index.php/catalog/<?php echo $genresItem['id'];?>" style="font-weight: 600;">             
+                    <a href="/bookbox/index.php/catalog/<?php echo $genresItem['id'];?>/page-1" style="font-weight: 600;">             
                     &#xab;<?php echo $genresItem['name_genre'];?>&#xbb;
                     </a>
                     <?php else:?> 
-                    <a href="/bookbox/index.php/catalog/<?php echo $genresItem['id'];?>">             
+                    <a href="/bookbox/index.php/catalog/<?php echo $genresItem['id'];?>/page-1">             
                         <?php echo $genresItem['name_genre'];?>
                     </a>
                 <?php endif;?> 
@@ -63,7 +63,10 @@
             </div>
         <?php endforeach;?>
 
+             <?php echo $pagination->get(); ?>
+
+       
         </div>
     </div>
-
+    
 <?php include ROOT . '/views/loyouts/footer.php';?>

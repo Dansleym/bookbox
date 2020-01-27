@@ -6,7 +6,7 @@ class Admin{
      * Returns books list by genre id
      * @param integer $id
      */
-    public static function setBook($name_book,$description,$price,$author_id,$genre_id){
+    public static function addBook($name_book,$description,$price,$author_id,$genre_id, $img){
 
         $db = Db::getConnection();
         echo "<br>name_book " . $name_book;
@@ -19,7 +19,7 @@ class Admin{
             
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $sql = "INSERT into books(name_book, description, price, author_id, genre_id, image)
-            VALUES ('$name_book', '$description', '$price', '$author_id', '$genre_id', '10.jpg')";
+            VALUES ('$name_book', '$description', '$price', '$author_id', '$genre_id', '$img')";
             
             $db->exec($sql);
             $last_id = $db->lastInsertId();
@@ -54,7 +54,7 @@ class Admin{
         $db = null;
     }
 
-    public static function updBook($id,$name_book,$description,$price,$author_id,$genre_id){
+    public static function updBook($id,$name_book,$description,$price,$author_id,$genre_id,$img){
 
         $db = Db::getConnection();
 
@@ -62,7 +62,7 @@ class Admin{
             
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $sql = "UPDATE books SET name_book='$name_book', description='$description', price='$price', 
-                    author_id='$author_id', genre_id='$genre_id', image='10.jpg' WHERE id=$id";
+                    author_id='$author_id', genre_id='$genre_id', image='$img' WHERE id=$id";
                    
             $db->exec($sql);
 

@@ -1,10 +1,6 @@
 <?php
 
 class AdminController{
-  
-    public function __construct(){
-        $_SESSION['admin']=1;
-    }
 
     public function actionIndex(){
         $booksList = array();
@@ -13,7 +9,7 @@ class AdminController{
         $genresList = array();
         $genresList = Genres::getGenresList();
 
-        require_once(ROOT.'/views/admin/updbook.php');
+        require_once(ROOT.'/views/admin/index.php');
         return true;
     }
 
@@ -25,6 +21,9 @@ class AdminController{
             $genresList = array();
             $genresList = Genres::getGenresList();
 
+            $authorsList = array();
+            $authorsList = Books::getAuthorsList();
+
             require_once(ROOT.'/views/admin/updbook.php'); 
         }
         return true; 
@@ -33,6 +32,10 @@ class AdminController{
     public function actionAddBook(){
         $genresList = array();
         $genresList = Genres::getGenresList();
+
+        $authorsList = array();
+        $authorsList = Books::getAuthorsList();
+        
         require_once(ROOT.'/views/admin/addbook.php');
 
         return true; 

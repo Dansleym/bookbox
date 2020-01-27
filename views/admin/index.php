@@ -14,15 +14,16 @@
     <title>Admin panel</title>
 </head>
 <body>
-
+<a href="/bookbox" style="position: absolute; color: black; font-size: 20px; left: 200px;">На главную</a>
+<a href="/bookbox/index.php/admin/addbook" style="position: absolute; color: black; font-size: 20px;right: 200px;">Добавить книгу</a>
 <div style="display:flex; justify-content: center;">
 <form action=""  method="POST">
-<ul>
-    <li style="display: flex; border-bottom: 2px solid black; width: 900px;">
+<ul style="padding: 0;">
+    <li style="display: flex; border-bottom: 2px solid black; width: 850px;">
         <div style="width: 200px; padding: 10px;">Автор:</div>
         <div style="width: 200px; padding: 10px;">Книга:</div>
         <div style="width: 100px; padding: 10px;">Цена:</div>
-        <div style="width: 100px; padding: 10px;">Код:</div>
+        <div style="width: 50px; padding: 10px;">Код:</div>
         <div style="width: 140px; padding: 10px;"><a href=""></a></div>
         <div style="width: 80px;"><a href=""></a></div>
     </li>
@@ -31,20 +32,20 @@
     <?php foreach($booksList as $booksItem): $i++;?>
 
         <?php if($i%2 == 0):?>        
-            <li style="display: flex; width: 900px;background: #eaeaea;">
+            <li style="display: flex; width: 850px;background: #eaeaea;">
                 <div style="width: 200px; padding: 10px;"><?php echo $booksItem['name_author'];?></div>
                 <div style="width: 200px; padding: 10px;"><?php echo $booksItem['name_book'];?></div>
                 <div style="width: 100px; padding: 10px;"><?php echo $booksItem['price'];?>$</div>
-                <div style="width: 100px; padding: 10px;"><?php echo $booksItem['id'];?></div>
+                <div style="width: 50px; padding: 10px;"><?php echo $booksItem['id'];?></div>
                 <div title='update' style="width: 140px; padding: 10px;"><a href="/bookbox/index.php/admin/updbook/<?php echo $booksItem['id'];?>" style="text-decoration: none;">редактировать</a></div>
                 <div title='delete' style="padding: 10px;"><button style="cursor: pointer;border: none; background-color: transparent;color: red;" type="submit" name="id" value="<?php echo $booksItem['id'];?>">удалить</button></div>
             </li> 
         <?php else:?> 
-            <li style="display: flex; width: 900px;background: white;">
+            <li style="display: flex; width: 850px;background: white;">
                 <div style="width: 200px; padding: 10px;"><?php echo $booksItem['name_author'];?></div>
                 <div style="width: 200px; padding: 10px;"><?php echo $booksItem['name_book'];?></div>
                 <div style="width: 100px; padding: 10px;"><?php echo $booksItem['price'];?>$</div>
-                <div style="width: 100px; padding: 10px;"><?php echo $booksItem['id'];?></div>
+                <div style="width: 50px; padding: 10px;"><?php echo $booksItem['id'];?></div>
                 <div title='update' style="width: 140px; padding: 10px;"><a href="/bookbox/index.php/admin/updbook/<?php echo $booksItem['id'];?>" style="text-decoration: none;">редактировать</a></div>
                 <div title='delete' style="padding: 10px;"><button style="cursor: pointer;border: none; background-color: transparent;color: red;" type="submit" name="id" value="<?php echo $booksItem['id'];?>">удалить</button></div>
             </li> 
@@ -53,7 +54,7 @@
     <?php endforeach;?>    
 </ul>
 </form>
-<a href="/bookbox/index.php/admin/addbook">add book</a>
+
 </div>
 
 </body>

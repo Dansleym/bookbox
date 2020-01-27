@@ -6,7 +6,6 @@ class Router{
     public function __construct(){
         $routesPath = ROOT.'/config/routes.php';
         $this->routes = include($routesPath);
-        session_start();
     }
 
     private function getURI()
@@ -15,24 +14,6 @@ class Router{
             
             return trim($_SERVER['REQUEST_URI'], '/');
         }
-    }
-
-    public function isAdmin($isAdmin = 0){
-
-        $_SESSION['admin'] = $isAdmin;
-        if($_SESSION['admin']){
-            self::adminRun();
-        }
-        else{
-            self::run();
-        }
-    }
-
-    public function adminRun(){
-            $booksList = array();
-            $booksList = Books::getBooksList();
-
-            require_once(ROOT.'/views/admin/index.php');
     }
 
     public function run(){

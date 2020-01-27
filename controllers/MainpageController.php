@@ -9,7 +9,7 @@ class MainpageController{
         $genresList = array();
         $genresList = Genres::getGenresList();
 
-        $authorsList = Books::getBookAuthorsList();
+        $authorsList = Books::getAuthorsList();
 
         require_once(ROOT. '/views/mainpage/index.php');
 

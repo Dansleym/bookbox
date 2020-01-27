@@ -5,6 +5,7 @@ return array(
     'author/([0-9]+)' => 'books/author/$1',
     'books' => 'books/index',
  
+    'catalog/([0-9]+)/page-([0-9]+)' => 'catalog/view/$1/$2',
     'catalog/([0-9]+)' => 'catalog/view/$1',
     'catalog' => 'catalog/index',
 
