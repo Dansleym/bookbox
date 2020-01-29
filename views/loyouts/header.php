@@ -11,9 +11,21 @@
 
 <div class="container">
   <div class="App">
-      <div class="header" style="position: relative;">
-        <a href="/bookbox" style="margin-left: 10px; color: white; font-size: 20px;">На главную</a>
-        <a href="/bookbox/index.php/admin/" style="position: absolute; right: 10px; color: white; font-size: 20px;margin-left: 100px;">Админ панель</a>
+      <div class="header">
+
+        <h1><a href="/bookbox">Book<span>Box</span></a></h1>
+        <div style="position: absolute; right: 10px; color: white; font-size: 20px;margin-left: 100px;">
+          <a href="/bookbox">На главную</a> / 
+          <a href="/bookbox/views/admin/mainadmin">Админ панель</a>
+        </div>
+
+        <ul>
+          <li><a href="/bookbox">Главная</a></li>
+          <li><a href="">Жанры</a></li>
+          <li><a href="">Авторы</a></li>
+          <li><a href="">О нас</a></li>
+          <li><a href="">О вас</a></li>
+        </ul>
       </div>
 
       

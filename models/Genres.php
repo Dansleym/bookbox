@@ -1,20 +1,19 @@
 <?php
 
-class Genres{
-
+class Genres
+{
     /**
      * Returns an array of genres items
      */
-    public static function getGenresList(){
-
+    public static function getGenresList()
+    {
         $db = Db::getConnection();
+        
+        $result = $db->query('SELECT id, name_genre FROM genres');
 
         $genresList = array();
-
-        $result = $db->query('SELECT id, name_genre FROM genres');
         $i = 0;
-
-        while($row = $result->fetch()){
+        while ($row = $result->fetch()) {
             $genresList[$i]['id'] = $row['id'];
             $genresList[$i]['name_genre'] = $row['name_genre'];
             $i++;

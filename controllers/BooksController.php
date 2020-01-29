@@ -1,8 +1,10 @@
 <?php
 
-class BooksController{
+class BooksController
+{
 
-    public function actionIndex(){
+    public function actionIndex()
+    {
         $booksList = array();
         $booksList = Books::getBooksList();
         $genresList = array();
@@ -13,10 +15,10 @@ class BooksController{
         return true;
     }
 
-    public function actionView($id){
-        if($id){
+    public function actionView($id)
+    {
+        if ($id) {
             $booksItem = Books::getBooksItemById($id);
-
             $genresList = array();
             $genresList = Genres::getGenresList();
 
@@ -25,17 +27,15 @@ class BooksController{
         return true;
     }
 
-    public function actionAuthor($id){
-        if($id){
-            $authorsList = Books::getBooksItemByAuthor($id);
-            
+    public function actionAuthor($id)
+    {
+        if ($id) {
+            $authorsList = Books::getBooksItemByAuthor($id);  
             $booksList = array();
-            $booksList = Books::getBooksListById($authorsList['id']);
-            
+            $booksList = Books::getBooksListById($authorsList['id']);   
             $genresList = array();
             $genresList = Genres::getGenresList();
             
-
             require_once(ROOT.'/views/books/author.php');
         }
         return true;

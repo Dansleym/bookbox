@@ -1,11 +1,12 @@
 <?php
 
-class Books{
-
-    public static function getTotalBooksInCategory($id){
+class Books
+{
+    public static function getTotalBooksInCategory($id)
+    {
         $id = intval($id);
 
-        if($id){
+        if ($id) {
             $db = Db::getConnection();
 
             $result = $db->query('SELECT count(id) FROM books WHERE genre_id='. $id);
@@ -18,8 +19,8 @@ class Books{
 
     }
 
-    public static function getTotalBooksCount(){
-
+    public static function getTotalBooksCount()
+    {
         $db = Db::getConnection();
 
         $result = $db->query('SELECT count(*) FROM books');
@@ -28,12 +29,13 @@ class Books{
         $row = $result->fetch();
 
         return $row['count(*)'];
-
     }
 
-    public static function getBooksListByAuthor($id){
-
-        if($id){
+    public static function getBooksListByAuthor($id)
+    {
+        $id = intval($id);
+        
+        if ($id) {
             $db = Db::getConnection();
 
             $result = $db->query('SELECT books.id, books.name_book, books.description, books.price, 
@@ -44,8 +46,7 @@ class Books{
               
             $catalogItems = array();
             $i = 0;
-
-            while($row = $result->fetch()){
+            while ($row = $result->fetch()) {
                 $catalogItems[$i]['id'] = $row['id'];
                 $catalogItems[$i]['name_book'] = $row['name_book'];
                 $catalogItems[$i]['description'] = $row['description'];
@@ -64,10 +65,11 @@ class Books{
      * Returns single books item by id
      * @param integer $id
      */
-    public static function getBooksItemById($id){
+    public static function getBooksItemById($id)
+    {
         $id = intval($id);
 
-        if($id){
+        if ($id) {
             $db = Db::getConnection();
 
             $result = $db->query('SELECT books.id, books.name_book, books.description, books.price, books.genre_id,
@@ -79,16 +81,16 @@ class Books{
     
             return $booksItem;
         }
-
     }
     
     /**
      * Returns an array of books by author
      */
-    public static function getBooksItemByAuthor($id){
+    public static function getBooksItemByAuthor($id)
+    {
         $id = intval($id);
 
-        if($id){
+        if ($id) {
             $db = Db::getConnection();
 
             $result = $db->query('SELECT * from authors WHERE id='. $id);
@@ -103,11 +105,9 @@ class Books{
     /**
      * Returns an array of books items
      */
-    public static function getBooksList(){
-        
+    public static function getBooksList()
+    {
         $db = Db::getConnection();
-
-        $booksList = array();
 
         $result = $db->query('SELECT books.id, books.name_book, books.description, 
                              books.price, books.image, books.author_id, authors.name_author 
@@ -118,10 +118,9 @@ class Books{
             // from books, genre
             // where books.id = genre.id
             // group by books.name_book;
-
+        $booksList = array();
         $i = 0;
-
-        while($row = $result->fetch()){
+        while ($row = $result->fetch()) {
             $booksList[$i]['id'] = $row['id'];
             $booksList[$i]['name_book'] = $row['name_book'];
             $booksList[$i]['description'] = $row['description'];
@@ -129,7 +128,6 @@ class Books{
             $booksList[$i]['image'] = $row['image'];
             $booksList[$i]['author_id'] = $row['author_id'];
             $booksList[$i]['name_author'] = $row['name_author'];
-   
             $i++;
         }
 
@@ -137,16 +135,15 @@ class Books{
     }
 
 
-    public static function getAuthorsList(){
-
+    public static function getAuthorsList()
+    {
         $db = Db::getConnection();
 
-        $authorList = array();
-
         $result = $db->query('SELECT * from authors');
-        $i = 0;
 
-        while($row = $result->fetch()){
+        $authorList = array();
+        $i = 0;
+        while ($row = $result->fetch()) {
             $authorList[$i]['id'] = $row['id'];
             $authorList[$i]['name_author'] = $row['name_author'];
             $authorList[$i]['information'] = $row['information'];
@@ -154,34 +151,31 @@ class Books{
         }
 
         return $authorList;
-        
     }
 
-    public static function getBooksListById($id){
+    public static function getBooksListById($id)
+    {
         $id = intval($id);
 
-        if($id){
+        if ($id) {
             $db = Db::getConnection();
-
-             $booksList = array();
 
             $result = $db->query('SELECT * from books WHERE author_id='. $id);
 
-        $i = 0;
+            $booksList = array();
+            $i = 0;
+            while ($row = $result->fetch()) {
+                $booksList[$i]['id'] = $row['id'];
+                $booksList[$i]['name_book'] = $row['name_book'];
+                $booksList[$i]['description'] = $row['description'];
+                $booksList[$i]['price'] = $row['price'];
+                $booksList[$i]['author_id'] = $row['author_id'];
+                $booksList[$i]['genre_id'] = $row['genre_id'];
+                $booksList[$i]['image'] = $row['image'];
+                $i++;
+            }
 
-        while($row = $result->fetch()){
-            $booksList[$i]['id'] = $row['id'];
-            $booksList[$i]['name_book'] = $row['name_book'];
-            $booksList[$i]['description'] = $row['description'];
-            $booksList[$i]['price'] = $row['price'];
-            $booksList[$i]['author_id'] = $row['author_id'];
-            $booksList[$i]['genre_id'] = $row['genre_id'];
-            $booksList[$i]['image'] = $row['image'];
-            $i++;
+            return $booksList;
         }
-
-        return $booksList;
-        }
-
     }
 }

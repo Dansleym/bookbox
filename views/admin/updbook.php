@@ -1,10 +1,10 @@
 <?php
-    if(isset($_POST['submit'])){
+    if (isset($_POST['submit'])) {
         $img = $_FILES['image']['name'];
         $tmp_name = $_FILES['image']['tmp_name'];
         move_uploaded_file($tmp_name, "C:\Users\Dansleym\Desktop\OSPanel_Min\domains\localhost\bookbox\assets\img/" . $img);
 
-        Admin::updBook($id, $_POST['name_book'],$_POST['textarea'],$_POST['price'], $_POST['name_author'],$_POST['genres'],$img);
+        Admin::updBook($id, $_POST['name_book'], $_POST['textarea'], $_POST['price'], $_POST['name_author'], $_POST['genres'], $img);
         echo "submit success";
     }
 ?>
@@ -20,12 +20,12 @@
 <body>
 
 <a href="/bookbox" style="color: black; font-size: 20px; margin-left: 200px;">На главную</a>
-<a href="/bookbox/index.php/admin/" style="position: absolute; color: black; font-size: 20px;right: 200px;">Админ панель</a>
+<a href="/bookbox/views/admin/mainadmin" style="position: absolute; color: black; font-size: 20px;right: 200px;">Админ панель</a>
 <div style="display:flex; justify-content: center;">
 
     <form action="" method="POST" enctype="multipart/form-data" style="display: flex; flex-direction: column; width: 50%;padding: 10px;">
 
-        <input type="file" name='image' style="margin: 10px;">
+        <input type="file" name='image' style="margin: 10px;" required>
         <select style="margin: 10px;" name="genres"  size="5" id="" multiple> 
             <?php foreach($genresList as $genresItem):?>
                 <?php if($genresItem['id']==$booksItem['genre_id']):?>

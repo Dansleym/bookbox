@@ -1,24 +1,19 @@
 <?php 
-if(isset($_POST['submit'])){
-    $to = "dansleymeplz@gmail.com"; // this is your Email address
-    $from = $_POST['email']; // this is the sender's Email address
-    $first_name = $_POST['first_name'];
-    $last_name = $_POST['last_name'];
-    $surname = $_POST['surname'];
-    $copies = $_POST['copies'];
-
-    $subject = "Form submission";
-
-    $message = "Имя: " .$first_name . "\nФимилия: " . $last_name . "\nОтчество: ". 
-    $surname . "\n\nКод книги: ". $booksItem["id"] . "\nКоличество экземпляров: ". $copies;
-    
-    $headers = "From:" . $from;
-    $headers2 = "From:" . $to;
-
-    mail($to,$subject,$message,$headers);
-
-    echo "Mail Sent. Thank you " . $first_name . ", we will contact you shortly.";
-    // You can also use header('Location: thank_you.php'); to redirect to another page.
+    if (isset($_POST['submit'])) {
+        $to = "dansleymeplz@gmail.com";
+        $from = $_POST['email'];
+        $first_name = $_POST['first_name'];
+        $last_name = $_POST['last_name'];
+        $surname = $_POST['surname'];
+        $copies = $_POST['copies'];
+        $subject = "Form submission";
+        $message = "Имя: " .$first_name . "\nФимилия: " . $last_name . "\nОтчество: ". 
+        $surname . "\n\nКод книги: ". $booksItem["id"] . "\nКоличество экземпляров: ". $copies; 
+        $headers = "From:" . $from;
+        $headers2 = "From:" . $to;
+        mail($to,$subject,$message,$headers);
+        echo "Mail Sent. Thank you " . $first_name . ", we will contact you shortly.";
+        // You can also use header('Location: thank_you.php'); to redirect to another page.
     }
 ?>
 
@@ -57,13 +52,13 @@ form input{
             <h2>Оформление заказа</h2>
             <div class="book" style="">
                 <div class="book-img">
-                    <a href="/bookbox/index.php/books/<?php echo $booksItem["id"]?>">
+                    <a href="/bookbox/books/<?php echo $booksItem["id"]?>">
                         <?php echo '<img src="\bookbox/assets/img/'.$booksItem["image"].'" title="'.$booksItem["name_book"].'">' ;?>
                     </a>
                 </div>
                 <div class="book-info">
 
-                    <a href="/bookbox/index.php/author/<?php echo $booksItem["author_id"]?>" style="text-decoration: none; color: black;">
+                    <a href="/bookbox/author/<?php echo $booksItem["author_id"]?>" style="text-decoration: none; color: black;">
                         <h3 class="book-author"><?php echo $booksItem['name_author'];?></h3>
                     </a>
 

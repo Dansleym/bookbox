@@ -1,78 +1,77 @@
 <?php
 
-class Admin{
-
+class Admin
+{
     /**
      * Returns books list by genre id
      * @param integer $id
      */
-    public static function addBook($name_book,$description,$price,$author_id,$genre_id, $img){
-
+    public static function addBook($name_book,$description,$price,$name_author,$genre_id, $img)
+    {
         $db = Db::getConnection();
-        echo "<br>name_book " . $name_book;
-        echo "<br>description " . $description;
-        echo "<br>price " . $price;
-        echo "<br>author_id " . $author_id;
-        echo "<br>genre_id " . $genre_id . "<br>";
-
-        try {
-            
+        try { 
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "INSERT into books(name_book, description, price, author_id, genre_id, image)
-            VALUES ('$name_book', '$description', '$price', '$author_id', '$genre_id', '$img')";
-            
-            $db->exec($sql);
-            $last_id = $db->lastInsertId();
-            echo "New record created successfully. Last inserted ID is: " . $last_id;
+
+
+            $result = $db->query('SELECT id from authors WHERE name_author="' .$name_author .'"');
+
+            $authorItem = $result->fetch();
+            $author_id = $authorItem['id'];
+    
+            if ($author_id) {
+                $sql2 = "INSERT into books(name_book, description, price, author_id, genre_id, image)
+                VALUES ('$name_book', '$description', '$price', '$author_id', '$genre_id', '$img')";
+                $db->exec($sql2);
+            }   else {
+                $sql = "INSERT INTO authors (name_author)
+                        SELECT * FROM (SELECT '$name_author') AS tmp
+                        WHERE NOT EXISTS (
+                            SELECT name_author FROM authors WHERE name_author = '$name_author'
+                        ) LIMIT 1";
+                $db->exec($sql);
+                $last_id = $db->lastInsertId();
+
+                $sql2 = "INSERT into books(name_book, description, price, author_id, genre_id, image)
+                    VALUES ('$name_book', '$description', '$price', '$last_id', '$genre_id', '$img')";
+                $db->exec($sql2);
             }
-        catch(PDOException $e)
-            {
+
+        } catch (PDOException $e) {
             echo $sql . "<br>" . $e->getMessage();
-            }
-        
+        }
         $db = null;
     }
 
-    public static function delBook($id){
-
+    public static function delBook($id)
+    {
         $db = Db::getConnection();
-
         try {
-            
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "DELETE FROM books WHERE id=$id";
-            
-            $db->exec($sql);
 
+            $sql = "DELETE FROM books WHERE id = $id";
+
+            $db->exec($sql);
             echo "Record deleted successfully";
-            }
-        catch(PDOException $e)
-            {
+        } catch (PDOException $e) {
             echo $sql . "<br>" . $e->getMessage();
-            }
-        
+        }
         $db = null;
     }
 
-    public static function updBook($id,$name_book,$description,$price,$author_id,$genre_id,$img){
-
+    public static function updBook($id,$name_book,$description,$price,$author_id,$genre_id,$img)
+    {
         $db = Db::getConnection();
-
-        try {
-            
+        try {   
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
             $sql = "UPDATE books SET name_book='$name_book', description='$description', price='$price', 
-                    author_id='$author_id', genre_id='$genre_id', image='$img' WHERE id=$id";
+                    author_id='$author_id', genre_id='$genre_id', image='$img' WHERE id = $id";
                    
             $db->exec($sql);
-
             echo "Record deleted successfully";
-            }
-        catch(PDOException $e)
-            {
+        } catch (PDOException $e) {
             echo $sql . "<br>" . $e->getMessage();
-            }
-        
+        }
         $db = null;
     }
 }
