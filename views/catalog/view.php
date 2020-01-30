@@ -43,11 +43,36 @@
                 </div>
                 <div class="book-info">
 
-                    <a href="/bookbox/author/<?php echo $catalogItem["author_id"]?>" style="text-decoration: none; color: black;">
-                                                
-                        <h3 class="book-author"><?php echo $catalogItem['name_author'];?></h3>
 
-                    </a>
+
+
+
+                    <?php $autors = explode(", ", $catalogItem['name_author']);$i=0;?>
+                    <?php foreach($autors as $aItem):?>
+
+                        <?php foreach($authorsList as $authorsItem):?>
+
+                            <?php if($aItem == $authorsItem['name_author']):?>  
+                                <a href="/bookbox/author/<?php echo $authorsItem["id"]?>" style="text-decoration: none; color: black;">
+                                     <?php if($i > 0):?> 
+                                        <?php echo ', ';?>
+                                     <?php endif;?>           
+                                    <span style="color: black; font-size: 1.3em;"><?php echo $authorsItem['name_author'];?></span>
+                                    
+                                </a>
+                                <?php $i++;?>
+                                
+                            <?php endif;?>
+
+                        <?php endforeach;?>
+
+                    <?php endforeach;?>
+
+
+
+
+
+
 
                     <a href="/bookbox/books/<?php echo $catalogItem["id"]?>" style="text-decoration: none;">
 

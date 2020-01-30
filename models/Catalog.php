@@ -2,7 +2,7 @@
 
 class Catalog
 {
-    const SHOW_BY_DEFAULT = 3;
+    const SHOW_BY_DEFAULT = 4;
     /**
      * Returns books list by genre id
      * @param integer $id
@@ -13,9 +13,11 @@ class Catalog
         $offset = ($page - 1) * self::SHOW_BY_DEFAULT;
 
         $result = $db->query('SELECT books.id, books.name_book, books.description, books.price, 
-                                books.image, books.author_id, authors.name_author 
-                                FROM books INNER JOIN authors ON books.author_id = authors.id 
+                                books.image, books.author_id, GROUP_CONCAT(authors.name_author SEPARATOR ", ") 
+                                AS name_author FROM books 
+                                INNER JOIN authors ON books.author_id = authors.id
                                 WHERE books.genre_id='.$id.'
+                                GROUP BY name_book 
                                 LIMIT ' . self::SHOW_BY_DEFAULT
                                 . ' OFFSET ' . $offset);
             

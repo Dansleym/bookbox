@@ -110,14 +110,10 @@ class Books
         $db = Db::getConnection();
 
         $result = $db->query('SELECT books.id, books.name_book, books.description, 
-                             books.price, books.image, books.author_id, authors.name_author 
-                             FROM books 
-                             INNER JOIN authors ON books.author_id=authors.id');
+                             books.price, books.image, books.author_id, GROUP_CONCAT(authors.name_author SEPARATOR ", ") 
+                             AS name_author FROM books 
+                             INNER JOIN authors ON books.author_id=authors.id GROUP BY name_book');
 
-            // select books.name_book, GROUP_CONCAT(genre.name_genre SEPARATOR ', ') as "genre_name"
-            // from books, genre
-            // where books.id = genre.id
-            // group by books.name_book;
         $booksList = array();
         $i = 0;
         while ($row = $result->fetch()) {

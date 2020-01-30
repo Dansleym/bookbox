@@ -35,7 +35,7 @@ class Admin
                     VALUES ('$name_book', '$description', '$price', '$last_id', '$genre_id', '$img')";
                 $db->exec($sql2);
             }
-
+            echo "Record insert successfully";
         } catch (PDOException $e) {
             echo $sql . "<br>" . $e->getMessage();
         }
@@ -68,7 +68,7 @@ class Admin
                     author_id='$author_id', genre_id='$genre_id', image='$img' WHERE id = $id";
                    
             $db->exec($sql);
-            echo "Record deleted successfully";
+            echo "Record update successfully";
         } catch (PDOException $e) {
             echo $sql . "<br>" . $e->getMessage();
         }

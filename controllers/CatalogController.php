@@ -21,6 +21,8 @@ class CatalogController
         $catalogItems = Catalog::getCatalogItemById($catalog, $page);
         $genresList = array();
         $genresList = Genres::getGenresList();
+        $authorsList = array();
+        $authorsList = Books::getAuthorsList();
         
         require_once(ROOT . '/views/catalog/view.php');
 
