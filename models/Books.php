@@ -2,6 +2,10 @@
 
 class Books
 {
+    /**
+     * Returns books list by category id
+     * @param integer $id
+     */
     public static function getTotalBooksInCategory($id)
     {
         $id = intval($id);
@@ -19,6 +23,9 @@ class Books
 
     }
 
+    /**
+     * Returns total count books 
+     */
     public static function getTotalBooksCount()
     {
         $db = Db::getConnection();
@@ -31,6 +38,10 @@ class Books
         return $row['count(*)'];
     }
 
+    /**
+     * Returns books list by author id
+     * @param integer $id
+     */
     public static function getBooksListByAuthor($id)
     {
         $id = intval($id);
@@ -62,7 +73,7 @@ class Books
     }
 
     /**
-     * Returns single books item by id
+     * Returns book by book id
      * @param integer $id
      */
     public static function getBooksItemById($id)
@@ -82,9 +93,10 @@ class Books
             return $booksItem;
         }
     }
-    
+
     /**
-     * Returns an array of books by author
+     * Returns book by author id
+     * @param integer $id
      */
     public static function getBooksItemByAuthor($id)
     {
@@ -103,7 +115,7 @@ class Books
 
 
     /**
-     * Returns an array of books items
+     * Returns total books list
      */
     public static function getBooksList()
     {
@@ -130,7 +142,9 @@ class Books
         return $booksList;
     }
 
-
+    /**
+     * Returns total authors list
+     */
     public static function getAuthorsList()
     {
         $db = Db::getConnection();
@@ -149,6 +163,10 @@ class Books
         return $authorList;
     }
 
+     /**
+     * Returns books list by author id
+     * @param integer $id
+     */
     public static function getBooksListById($id)
     {
         $id = intval($id);

@@ -5,7 +5,7 @@ class Catalog
     const SHOW_BY_DEFAULT = 4;
     /**
      * Returns books list by genre id
-     * @param integer $id
+     * @param integer $id, $page = 1
      */
     public static function getCatalogItemById($id, $page = 1)
     {

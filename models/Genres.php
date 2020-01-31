@@ -3,7 +3,7 @@
 class Genres
 {
     /**
-     * Returns an array of genres items
+     * Returns total genres list
      */
     public static function getGenresList()
     {

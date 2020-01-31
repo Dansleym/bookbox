@@ -21,10 +21,10 @@
 
         <ul>
           <li><a href="/bookbox">Главная</a></li>
-          <li><a href="">Жанры</a></li>
-          <li><a href="">Авторы</a></li>
-          <li><a href="">О нас</a></li>
-          <li><a href="">О вас</a></li>
+          <li><a href="#">Жанры</a></li>
+          <li><a href="#">Авторы</a></li>
+          <li><a href="#">О нас</a></li>
+          <li><a href="#">О вас</a></li>
         </ul>
       </div>
 

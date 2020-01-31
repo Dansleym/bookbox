@@ -5,7 +5,6 @@
         move_uploaded_file($tmp_name, "C:\Users\Dansleym\Desktop\OSPanel_Min\domains\localhost\bookbox\assets\img/" . $img);
 
         Admin::updBook($id, $_POST['name_book'], $_POST['textarea'], $_POST['price'], $_POST['name_author'], $_POST['genres'], $img);
-        echo "submit success";
     }
 ?>
 <!DOCTYPE html>

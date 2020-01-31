@@ -2,11 +2,7 @@
 
 class Admin
 {
-    /**
-     * Returns books list by genre id
-     * @param integer $id
-     */
-    public static function addBook($name_book,$description,$price,$name_author,$genre_id, $img)
+    public static function addBook($name_book, $description, $price, $name_author, $genre_id, $img)
     {
         $db = Db::getConnection();
         try { 
@@ -35,7 +31,7 @@ class Admin
                     VALUES ('$name_book', '$description', '$price', '$last_id', '$genre_id', '$img')";
                 $db->exec($sql2);
             }
-            echo "Record insert successfully";
+            echo "Record inserted successfully";
         } catch (PDOException $e) {
             echo $sql . "<br>" . $e->getMessage();
         }
@@ -58,7 +54,7 @@ class Admin
         $db = null;
     }
 
-    public static function updBook($id,$name_book,$description,$price,$author_id,$genre_id,$img)
+    public static function updBook($id, $name_book, $description, $price, $author_id, $genre_id, $img)
     {
         $db = Db::getConnection();
         try {   
@@ -68,7 +64,7 @@ class Admin
                     author_id='$author_id', genre_id='$genre_id', image='$img' WHERE id = $id";
                    
             $db->exec($sql);
-            echo "Record update successfully";
+            echo "Record updated successfully";
         } catch (PDOException $e) {
             echo $sql . "<br>" . $e->getMessage();
         }

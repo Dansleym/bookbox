@@ -12,6 +12,7 @@ body {
   margin: 0;
   background-color: #edc860;
   padding-top: 10px;
+  min-width: 1000px;
 }
 
 .container {
@@ -70,6 +71,24 @@ body {
   height: 60px;
 }
 
+.image-read {
+  background-image: url("../img/iread.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  width: 40%;
+  height: 400px;
+  margin: 20px;
+}
+.image-read2 {
+  background-image: url("../img/iread2.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  width: 40%;
+  height: 400px;
+  margin: 20px;
+}
 .nav {
   grid-area: n;
   background-color: white;
@@ -182,5 +201,13 @@ h3 {
 .footer {
   grid-area: b;
   background-color: black;
-  height: 200px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer h5 {
+  margin: 0;
+  padding: 0;
+  color: white;
 }
